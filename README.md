@@ -47,11 +47,11 @@ public int getAno();
 
 //Método que calcula um valor para venda. Utilizar o seguinte cálculo:
 
-//valorParaVenda = valorDeCompra –  idadeVeiculoEmAnos\*0,15\*valorDeCompra
+//valorParaVenda = valorDeCompra –  idadeVeiculoEmAnos*0,15*valorDeCompra
 
 //Se o resultado for menor do que 10% do valorDeCompra ou negative, então
 
-//        varlorParaVenda = valorDeCompra\*0,1
+//        varlorParaVenda = valorDeCompra*0,1
 
 public double getValorParaVenda();
 
