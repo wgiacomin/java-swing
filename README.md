@@ -20,7 +20,8 @@ O sistema terá os seguintes requisitos:
 
 ```java
 public interface VeiculoI { 
-//Muda estado para LOCADO. Cria uma instância de Locacao e armazena no atributo locacao. Chama o método getValorDiariaLocacao para calcular o valor da locação. 
+//Muda estado para LOCADO. Cria uma instância de Locacao e armazena no atributo locacao. 
+//Chama o método getValorDiariaLocacao para calcular o valor da locação. 
 
 public void locar(int dias, Calendar data, Cliente cliente);
 
