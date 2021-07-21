@@ -12,7 +12,7 @@ import projetofinal.cliente.Cliente;
 import projetofinal.cliente.ClienteManter;
 
 public class DesktopArea extends javax.swing.JFrame {
-    private final List<Cliente> listaDeClientes = new ArrayList();
+    private static final List<Cliente> listaDeClientes = new ArrayList();
     
     public DesktopArea() {
         initComponents();
@@ -27,10 +27,13 @@ public class DesktopArea extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         mainScreen = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,18 +47,22 @@ public class DesktopArea extends javax.swing.JFrame {
         );
         mainScreenLayout.setVerticalGroup(
             mainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 502, Short.MAX_VALUE)
+            .addGap(0, 264, Short.MAX_VALUE)
         );
 
         getContentPane().add(mainScreen, java.awt.BorderLayout.CENTER);
 
+        jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
         jMenu1.setText("Cliente");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu1ActionPerformed(evt);
             }
         });
 
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItem2.setText("Manter");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +131,7 @@ public class DesktopArea extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JDesktopPane mainScreen;
     // End of variables declaration//GEN-END:variables
