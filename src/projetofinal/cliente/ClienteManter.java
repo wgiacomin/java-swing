@@ -245,6 +245,9 @@ public class ClienteManter extends javax.swing.JInternalFrame {
         String c_cpf = this.cpf.getText();
         String c_rg = this.rg.getText();
         String c_sobrenome = this.sobrenome.getText();
+        if (c_nome.isEmpty() || c_endereco.isEmpty() || c_cpf.isEmpty() || c_rg.isEmpty() || c_sobrenome.isEmpty()){
+            Error.main("ixi");
+        }
         Cliente cliente = new Cliente(c_nome, c_sobrenome, c_rg, c_cpf, c_endereco);
         listaDeClientes.add(cliente);
         clientesTabela.addCliente(cliente);
@@ -254,7 +257,7 @@ public class ClienteManter extends javax.swing.JInternalFrame {
         if (linhaAtual != -1) {
             clientesTabela.removeCliente(linhaAtual);
         } else {
-            DeleteError.main("ixi");
+            Error.main("ixi");
         }
     }//GEN-LAST:event_botaoRemoverMouseReleased
 

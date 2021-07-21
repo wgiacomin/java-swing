@@ -11,12 +11,12 @@ import javax.swing.JFrame;
  *
  * @author wande
  */
-public class DeleteError extends javax.swing.JDialog {
+public class Error extends javax.swing.JDialog {
 
     /**
      * Creates new form DeleteError
      */
-    public DeleteError(java.awt.Frame parent, boolean modal, String message) {
+    public Error(java.awt.Frame parent, boolean modal, String message) {
         super(parent, modal);
         this.setLocationRelativeTo(parent);
         initComponents();
@@ -24,7 +24,7 @@ public class DeleteError extends javax.swing.JDialog {
         erroMessage.setText(message);
     }
 
-    DeleteError(String ixi) {
+    Error(String ixi) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -57,10 +57,11 @@ public class DeleteError extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Não foi possível deletar o registro.");
+        jLabel1.setText("Não foi executar a ação.");
 
         jLabel2.setText("O seguinte erro foi encontrado:");
 
+        erroMessage.setFont(new java.awt.Font("Segoe UI", 2, 15)); // NOI18N
         erroMessage.setText("erro");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -72,16 +73,12 @@ public class DeleteError extends javax.swing.JDialog {
                 .addComponent(botaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(erroMessage))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(erroMessage)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,9 +87,9 @@ public class DeleteError extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(erroMessage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(botaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -122,20 +119,21 @@ public class DeleteError extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeleteError.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeleteError.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeleteError.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeleteError.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DeleteError dialog = new DeleteError(new javax.swing.JFrame(), true, message);
+                Error dialog = new Error(new javax.swing.JFrame(), true, message);
                 dialog.setVisible(true);
             }
         });
