@@ -5,19 +5,18 @@
  */
 package main;
 
+import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.List;
+import projetofinal.cliente.Cliente;
 import projetofinal.cliente.ClienteManter;
 
-/**
- *
- * @author wande
- */
 public class DesktopArea extends javax.swing.JFrame {
-
-    /**
-     * Creates new form MenuBar
-     */
+    private final List<Cliente> listaDeClientes = new ArrayList();
+    
     public DesktopArea() {
         initComponents();
+        setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -34,6 +33,8 @@ public class DesktopArea extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        mainScreen.setPreferredSize(new java.awt.Dimension(900, 900));
 
         javax.swing.GroupLayout mainScreenLayout = new javax.swing.GroupLayout(mainScreen);
         mainScreen.setLayout(mainScreenLayout);
@@ -75,8 +76,12 @@ public class DesktopArea extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void queryClient(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryClient
-        ClienteManter clientesManter = new ClienteManter();
+        ClienteManter clientesManter = new ClienteManter(listaDeClientes);
         this.mainScreen.add(clientesManter);
+        Dimension desktopSize = this.getSize();
+        Dimension jInternalFrameSize = clientesManter.getSize();
+        clientesManter.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
+                (desktopSize.height - jInternalFrameSize.height - 100) / 2);
         clientesManter.setVisible(true);
     }//GEN-LAST:event_queryClient
 

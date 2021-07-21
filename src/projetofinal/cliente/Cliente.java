@@ -1,20 +1,18 @@
 package projetofinal.cliente;
 
-public class Cliente {
-    private long id;
+public class Cliente {;
     private String nome;
+    private String rg;
+    private String cpf;
+    private String endereco;
+    private String sobrenome;
 
-    public Cliente(long id, String nome) {
-        this.id = id;
+    public Cliente(String nome, String sobrenome, String rg, String cpf, String endereco) {
         this.nome = nome;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.sobrenome = sobrenome;
     }
 
     public String getNome() {
@@ -24,4 +22,37 @@ public class Cliente {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
 }
