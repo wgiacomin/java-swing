@@ -1,4 +1,4 @@
-package projetofinal.cliente;
+package beans.cliente;
 
 public class Cliente {;
     private String nome;

@@ -1,4 +1,4 @@
-package projetofinal.cliente;
+package beans.cliente;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;

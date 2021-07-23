@@ -8,12 +8,17 @@ package main;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
-import projetofinal.cliente.Cliente;
-import projetofinal.cliente.ClienteManter;
+import beans.cliente.Cliente;
+import beans.veiculos.VeiculoAbstract;
+import views.ClienteManter;
+import views.IncluirVeiculo;
+import views.LocarVeiculo;
 
 public class DesktopArea extends javax.swing.JFrame {
-    private static final List<Cliente> listaDeClientes = new ArrayList();
-    
+
+    private static List<Cliente> listaDeClientes = new ArrayList();
+    private static List<VeiculoAbstract> listaDeVeiculos = new ArrayList();
+
     public DesktopArea() {
         initComponents();
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
@@ -28,12 +33,18 @@ public class DesktopArea extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         mainScreen = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,11 +54,11 @@ public class DesktopArea extends javax.swing.JFrame {
         mainScreen.setLayout(mainScreenLayout);
         mainScreenLayout.setHorizontalGroup(
             mainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 743, Short.MAX_VALUE)
+            .addGap(0, 894, Short.MAX_VALUE)
         );
         mainScreenLayout.setVerticalGroup(
             mainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
 
         getContentPane().add(mainScreen, java.awt.BorderLayout.CENTER);
@@ -56,11 +67,6 @@ public class DesktopArea extends javax.swing.JFrame {
 
         jMenu1.setText("Cliente");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
-            }
-        });
 
         jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItem2.setText("Manter");
@@ -73,14 +79,33 @@ public class DesktopArea extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setText("Veiculos");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItem4.setText("Incluir");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incluirVeiculo(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItem5.setText("Locar");
+        jMenuItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botaoLocar(evt);
+            }
+        });
+        jMenu2.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void queryClient(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryClient
         ClienteManter clientesManter = new ClienteManter(listaDeClientes);
@@ -91,6 +116,26 @@ public class DesktopArea extends javax.swing.JFrame {
                 (desktopSize.height - jInternalFrameSize.height - 100) / 2);
         clientesManter.setVisible(true);
     }//GEN-LAST:event_queryClient
+
+    private void incluirVeiculo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incluirVeiculo
+        IncluirVeiculo incluirVeiculo = new IncluirVeiculo(listaDeVeiculos);
+        this.mainScreen.add(incluirVeiculo);
+        Dimension desktopSize = this.getSize();
+        Dimension jInternalFrameSize = incluirVeiculo.getSize();
+        incluirVeiculo.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
+                (desktopSize.height - jInternalFrameSize.height - 100) / 2);
+        incluirVeiculo.setVisible(true);
+    }//GEN-LAST:event_incluirVeiculo
+
+    private void botaoLocar(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoLocar
+        LocarVeiculo locarVeiculo = new LocarVeiculo(listaDeVeiculos);
+        this.mainScreen.add(locarVeiculo);
+        Dimension desktopSize = this.getSize();
+        Dimension jInternalFrameSize = locarVeiculo.getSize();
+        locarVeiculo.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
+                (desktopSize.height - jInternalFrameSize.height - 100) / 2);
+        locarVeiculo.setVisible(true);
+    }//GEN-LAST:event_botaoLocar
 
     /**
      * @param args the command line arguments
@@ -130,9 +175,13 @@ public class DesktopArea extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JDesktopPane mainScreen;
     // End of variables declaration//GEN-END:variables
 }

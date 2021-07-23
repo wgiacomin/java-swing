@@ -1,11 +1,14 @@
-package projetofinal.cliente;
+package views;
 
-import java.util.ArrayList;
+import views.Error;
+import beans.cliente.ClientesTabela;
+import beans.cliente.Cliente;
 import java.util.List;
 
 public class ClienteManter extends javax.swing.JInternalFrame {
+
     private List<Cliente> listaDeClientes;
-    private final ClientesTabela clientesTabela = new ClientesTabela();
+    private ClientesTabela clientesTabela = new ClientesTabela();
     private final String letras = "[^a-zA-Z]";
     private final String letrasEEspaco = "[^a-zA-Z ']";
     private final String numeros = "[^0-9]";
@@ -29,7 +32,6 @@ public class ClienteManter extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         sobrenome = new javax.swing.JTextField();
         rg = new javax.swing.JTextField();
-        cpf = new javax.swing.JTextField();
         endereco = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -41,6 +43,7 @@ public class ClienteManter extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         idNumber = new javax.swing.JButton();
         botaoListar = new javax.swing.JButton();
+        cpf = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -79,15 +82,6 @@ public class ClienteManter extends javax.swing.JInternalFrame {
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 rgKeyReleased(evt);
-            }
-        });
-
-        cpf.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cpfKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cpfKeyReleased(evt);
             }
         });
 
@@ -140,6 +134,13 @@ public class ClienteManter extends javax.swing.JInternalFrame {
             }
         });
 
+        try {
+            cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###'.###'.###'-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        cpf.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,11 +160,11 @@ public class ClienteManter extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(endereco)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(rg, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(sobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(rg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                                    .addComponent(cpf, javax.swing.GroupLayout.Alignment.LEADING))))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel6)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -200,8 +201,8 @@ public class ClienteManter extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,12 +246,13 @@ public class ClienteManter extends javax.swing.JInternalFrame {
         String c_cpf = this.cpf.getText();
         String c_rg = this.rg.getText();
         String c_sobrenome = this.sobrenome.getText();
-        if (c_nome.isEmpty() || c_endereco.isEmpty() || c_cpf.isEmpty() || c_rg.isEmpty() || c_sobrenome.isEmpty()){
-            Error.main("ixi");
+        if (c_nome.isEmpty() || c_endereco.isEmpty() || c_cpf.isEmpty() || c_rg.isEmpty() || c_sobrenome.isEmpty()) {
+            Error.main("Um ou mais campos enocontram-se vazios.");
+        } else {
+            Cliente cliente = new Cliente(c_nome, c_sobrenome, c_rg, c_cpf, c_endereco);
+            listaDeClientes.add(cliente);
+            clientesTabela.addCliente(cliente);
         }
-        Cliente cliente = new Cliente(c_nome, c_sobrenome, c_rg, c_cpf, c_endereco);
-        listaDeClientes.add(cliente);
-        clientesTabela.addCliente(cliente);
     }//GEN-LAST:event_botaoAdicionarMouseReleased
 
     private void botaoRemoverMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverMouseReleased
@@ -261,45 +263,31 @@ public class ClienteManter extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_botaoRemoverMouseReleased
 
-    private void nomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeKeyReleased
-        nome.setText(nome.getText().replaceAll(letras, ""));
-    }//GEN-LAST:event_nomeKeyReleased
+    private void enderecoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enderecoKeyReleased
+        endereco.setText(endereco.getText().replaceAll(alfanumeric, ""));
+    }//GEN-LAST:event_enderecoKeyReleased
+
+    private void botaoListarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoListarMouseReleased
+        clientesTabela.refreshTabela(listaDeClientes);
+    }//GEN-LAST:event_botaoListarMouseReleased
 
     private void sobrenomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sobrenomeKeyReleased
         sobrenome.setText(sobrenome.getText().replaceAll(letrasEEspaco, ""));
     }//GEN-LAST:event_sobrenomeKeyReleased
 
+    private void nomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeKeyReleased
+        nome.setText(nome.getText().replaceAll(letras, ""));
+    }//GEN-LAST:event_nomeKeyReleased
+
     private void rgKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rgKeyReleased
         rg.setText(rg.getText().replaceAll(numeros, ""));
     }//GEN-LAST:event_rgKeyReleased
-
-    private void cpfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cpfKeyReleased
-        cpf.setText(cpf.getText().replaceAll(numeros, ""));
-        cpf.setText(cpf.getText().replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4"));
-        if (cpf.getText().length() > 14) {
-            cpf.setText(cpf.getText().substring(0, 14));
-        }
-    }//GEN-LAST:event_cpfKeyReleased
-
-    private void enderecoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enderecoKeyReleased
-        endereco.setText(endereco.getText().replaceAll(alfanumeric, ""));
-    }//GEN-LAST:event_enderecoKeyReleased
-
-    private void cpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cpfKeyPressed
-        if (cpf.getText().length() >= 14) {
-            cpf.setText(cpf.getText().substring(0, 13));
-        }
-    }//GEN-LAST:event_cpfKeyPressed
 
     private void rgKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rgKeyPressed
         if (rg.getText().length() >= 14) {
             rg.setText(rg.getText().substring(0, 13));
         }
     }//GEN-LAST:event_rgKeyPressed
-
-    private void botaoListarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoListarMouseReleased
-        clientesTabela.refreshTabela(listaDeClientes);
-    }//GEN-LAST:event_botaoListarMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -308,7 +296,7 @@ public class ClienteManter extends javax.swing.JInternalFrame {
     private javax.swing.JButton botaoEditar;
     private javax.swing.JButton botaoListar;
     private javax.swing.JButton botaoRemover;
-    private javax.swing.JTextField cpf;
+    private javax.swing.JFormattedTextField cpf;
     private javax.swing.JTextField endereco;
     private javax.swing.JButton idNumber;
     private javax.swing.JLabel jLabel1;
