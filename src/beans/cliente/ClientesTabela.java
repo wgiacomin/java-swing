@@ -60,6 +60,9 @@ public class ClientesTabela extends AbstractTableModel {
     }
     
     public boolean removeCliente(int linha){
+        if (this.listaDeClientes.get(linha).getVeiculosLocados() > 0){
+            return false;
+        }
         boolean result = this.listaDeClientes.remove(this.listaDeClientes.get(linha));
         this.fireTableRowsDeleted(linha, linha);
         return result;

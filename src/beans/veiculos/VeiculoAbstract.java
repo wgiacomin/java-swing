@@ -32,6 +32,7 @@ public abstract class VeiculoAbstract implements VeiculoInterface {
         }
         this.locacao = new Locacao(dias, getValorDiariaLocacao(), data, cliente);
         this.estado = Estado.LOCADO;
+        cliente.locar(this);
     }
 
     @Override
@@ -42,6 +43,8 @@ public abstract class VeiculoAbstract implements VeiculoInterface {
     @Override
     public void devolver() {
         this.estado = Estado.DISPONIVEL;
+        locacao.getCliente().devolver(this);
+        locacao = null;        
     }
 
     @Override

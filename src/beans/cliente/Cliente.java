@@ -1,11 +1,16 @@
 package beans.cliente;
 
+import beans.veiculos.VeiculoAbstract;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cliente {;
     private String nome;
     private String rg;
     private String cpf;
     private String endereco;
     private String sobrenome;
+    private List<VeiculoAbstract> listaDeLocacao = new ArrayList<>();
 
     public Cliente(String nome, String sobrenome, String rg, String cpf, String endereco) {
         this.nome = nome;
@@ -13,6 +18,14 @@ public class Cliente {;
         this.cpf = cpf;
         this.endereco = endereco;
         this.sobrenome = sobrenome;
+    }
+    
+    public void locar(VeiculoAbstract veiculo){
+        this.listaDeLocacao.add(veiculo);
+    }
+    
+    public void devolver(VeiculoAbstract veiculo){
+        this.listaDeLocacao.remove(veiculo);
     }
 
     public String getNome() {
@@ -55,4 +68,7 @@ public class Cliente {;
         this.sobrenome = sobrenome;
     }
 
+    public int getVeiculosLocados(){
+        return this.listaDeLocacao.size();
+    }
 }
