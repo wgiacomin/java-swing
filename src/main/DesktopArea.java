@@ -128,7 +128,7 @@ public class DesktopArea extends javax.swing.JFrame {
     }//GEN-LAST:event_incluirVeiculo
 
     private void botaoLocar(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoLocar
-        LocarVeiculo locarVeiculo = new LocarVeiculo(listaDeVeiculos);
+        LocarVeiculo locarVeiculo = new LocarVeiculo(listaDeVeiculos, listaDeClientes);
         this.mainScreen.add(locarVeiculo);
         Dimension desktopSize = this.getSize();
         Dimension jInternalFrameSize = locarVeiculo.getSize();

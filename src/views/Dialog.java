@@ -11,21 +11,17 @@ import javax.swing.JFrame;
  *
  * @author wande
  */
-public class Error extends javax.swing.JDialog {
+public class Dialog extends javax.swing.JDialog {
 
     /**
      * Creates new form DeleteError
      */
-    public Error(java.awt.Frame parent, boolean modal, String message) {
+    public Dialog(java.awt.Frame parent, boolean modal, String message) {
         super(parent, modal);
         this.setLocationRelativeTo(parent);
         initComponents();
         this.setDefaultCloseOperation(javax.swing.JDialog.DISPOSE_ON_CLOSE);
         erroMessage.setText(message);
-    }
-
-    Error(String ixi) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -37,12 +33,11 @@ public class Error extends javax.swing.JDialog {
     private void initComponents() {
 
         botaoOk = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        erroMessage = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        erroMessage = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Erro ao apagar!");
+        setTitle("Atenção!");
         setAlwaysOnTop(true);
         setModal(true);
         setName("dialog"); // NOI18N
@@ -57,39 +52,33 @@ public class Error extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Não foi executar a ação.");
-
-        jLabel2.setText("O seguinte erro foi encontrado:");
-
+        erroMessage.setEditable(false);
+        erroMessage.setColumns(20);
         erroMessage.setFont(new java.awt.Font("Segoe UI", 2, 15)); // NOI18N
-        erroMessage.setText("erro");
+        erroMessage.setLineWrap(true);
+        erroMessage.setRows(5);
+        erroMessage.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(erroMessage);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 322, Short.MAX_VALUE)
                 .addComponent(botaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(erroMessage)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(43, 43, 43)
-                .addComponent(erroMessage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(botaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -119,21 +108,23 @@ public class Error extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Error dialog = new Error(new javax.swing.JFrame(), true, message);
+                Dialog dialog = new Dialog(new javax.swing.JFrame(), true, message);
                 dialog.setVisible(true);
             }
         });
@@ -141,8 +132,7 @@ public class Error extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoOk;
-    private javax.swing.JLabel erroMessage;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextArea erroMessage;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

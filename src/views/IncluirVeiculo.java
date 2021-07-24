@@ -54,7 +54,7 @@ public class IncluirVeiculo extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        botaoIncluir = new javax.swing.JButton();
         boxAno = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
 
@@ -72,8 +72,8 @@ public class IncluirVeiculo extends javax.swing.JInternalFrame {
         boxEstado.setSelectedItem(null);
         boxEstado.setToolTipText("");
 
-        boxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AUTOMÓVEL", "MOTOCICLETA", "VAN" }));
-        boxTipo.setSelectedIndex(-1);
+        boxTipo.setModel(new DefaultComboBoxModel(beans.veiculos.atributos.Tipo.values()));
+        boxTipo.setSelectedItem(null);
         boxTipo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 changeTipo(evt);
@@ -113,10 +113,10 @@ public class IncluirVeiculo extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setText("Insira as informações do veículo:");
 
-        jButton1.setText("Incluir");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                botaoIncluir(evt);
+        botaoIncluir.setText("Incluir");
+        botaoIncluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                botaoIncluirMouseReleased(evt);
             }
         });
 
@@ -140,7 +140,7 @@ public class IncluirVeiculo extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botaoIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(31, 31, 31))
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
@@ -204,7 +204,7 @@ public class IncluirVeiculo extends javax.swing.JInternalFrame {
                     .addComponent(boxAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
 
@@ -226,19 +226,19 @@ public class IncluirVeiculo extends javax.swing.JInternalFrame {
         boxModelo.setSelectedItem(null);
     }//GEN-LAST:event_changeTipo
 
-    private void botaoIncluir(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluir
+    private void botaoIncluirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoIncluirMouseReleased
         if (boxCategoria.getSelectedIndex() < 0 || boxEstado.getSelectedIndex() < 0 || boxMarca.getSelectedIndex() < 0) {
-            Error.main("Um ou mais campos enocontram-se vazios.");
+            Dialog.main("Um ou mais campos enocontram-se vazios.");
             return;
         }
 
-        if (boxTipo.getSelectedIndex() < 0 || boxPlaca.getText().length() < 7 || (Long) boxValorDeCompra.getValue() < 0) {
-            Error.main("Um ou mais campos enocontram-se vazios.");
+        if (boxTipo.getSelectedIndex() < 0 || boxPlaca.getText().length() < 7 || (Long) boxValorDeCompra.getValue() < 0 || boxModelo.getSelectedIndex() < 0) {
+            Dialog.main("Um ou mais campos enocontram-se vazios.");
             return;
         }
 
         if (Integer.parseInt(boxAno.getText()) < 1900) {
-            Error.main("O ano é inferior a 1900.");
+            Dialog.main("O ano é inferior a 1900.");
             return;
         }
 
@@ -265,12 +265,20 @@ public class IncluirVeiculo extends javax.swing.JInternalFrame {
         }
         if (novoVeiculo != null) {
             this.listaDeVeiculos.add(novoVeiculo);
+            boxEstado.setSelectedIndex(-1);
+            boxMarca.setSelectedIndex(-1);
+            boxTipo.setSelectedIndex(-1);
+            boxCategoria.setSelectedIndex(-1);
+            boxPlaca.setText("");
+            boxAno.setText("");
+            boxValorDeCompra.setText("");
+            Dialog.main("Veículo de placa " + placa + " cadastrado com sucesso!");
         }
-
-    }//GEN-LAST:event_botaoIncluir
+    }//GEN-LAST:event_botaoIncluirMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoIncluir;
     private javax.swing.JFormattedTextField boxAno;
     private javax.swing.JComboBox<String> boxCategoria;
     private javax.swing.JComboBox<String> boxEstado;
@@ -279,7 +287,6 @@ public class IncluirVeiculo extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField boxPlaca;
     private javax.swing.JComboBox<String> boxTipo;
     private javax.swing.JFormattedTextField boxValorDeCompra;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

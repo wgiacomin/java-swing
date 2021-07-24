@@ -31,6 +31,7 @@ public abstract class VeiculoAbstract implements VeiculoInterface {
             return;
         }
         this.locacao = new Locacao(dias, getValorDiariaLocacao(), data, cliente);
+        this.estado = Estado.LOCADO;
     }
 
     @Override

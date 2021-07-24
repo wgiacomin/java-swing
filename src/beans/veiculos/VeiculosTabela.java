@@ -1,14 +1,17 @@
 package beans.veiculos;
 
+import beans.veiculos.atributos.Tipo;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.table.AbstractTableModel;
-
 
 public class VeiculosTabela extends AbstractTableModel {
 
-private final String[] colunas = new String[]{"#", "Tipo", "Placa", "Marca", "Modelo", "Preço da diária", "Ano"};
+    private final String[] colunas = new String[]{"#", "Tipo", "Placa", "Marca", "Modelo", "Ano", "Preço da diária"};
     private List<VeiculoAbstract> listaDeVeiculos = new ArrayList();
+    NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
 
     @Override
     public int getRowCount() {
@@ -37,45 +40,58 @@ private final String[] colunas = new String[]{"#", "Tipo", "Placa", "Marca", "Mo
             case 0:
                 return row;
             case 1:
-                if (veiculo instanceof Automovel) { return "Automovel"; }
-                if (veiculo instanceof Motocicleta) { return "Motocicleta"; }
-                if (veiculo instanceof Van) { return "Van"; }
+                if (veiculo instanceof Automovel) {
+                    return Tipo.AUTOMOVEL;
+                }
+                if (veiculo instanceof Motocicleta) {
+                    return Tipo.MOTOCICLETA;
+                }
+                if (veiculo instanceof Van) {
+                    return Tipo.VAN;
+                }
             case 2:
                 return veiculo.getPlaca();
             case 3:
                 return veiculo.getMarca();
             case 4:
-                if (veiculo instanceof Automovel) { return((Automovel) veiculo).getModelo(); }
-                if (veiculo instanceof Motocicleta) { return((Motocicleta) veiculo).getModelo(); }
-                if (veiculo instanceof Van) { return((Van) veiculo).getModelo(); }
+                if (veiculo instanceof Automovel) {
+                    return ((Automovel) veiculo).getModelo();
+                }
+                if (veiculo instanceof Motocicleta) {
+                    return ((Motocicleta) veiculo).getModelo();
+                }
+                if (veiculo instanceof Van) {
+                    return ((Van) veiculo).getModelo();
+                }
+                return null;
             case 5:
-                return veiculo.getValorDiariaLocacao();
-            case 6:
                 return veiculo.getAno();
+            case 6:
+                return formatter.format(veiculo.getValorDiariaLocacao());
             default:
                 return null;
         }
     }
 
-    public VeiculoAbstract getCliente(int linha) {
+    public VeiculoAbstract getVeiculo(int linha) {
         return listaDeVeiculos.get(linha);
     }
 
-    public void addCliente(VeiculoAbstract veiculo) {
+    public void addVeiculo(VeiculoAbstract veiculo) {
         this.listaDeVeiculos.add(veiculo);
         this.fireTableRowsInserted(listaDeVeiculos.size() - 1, listaDeVeiculos.size() - 1);
     }
-    
-    public boolean removeCliente(int linha){
+
+    public boolean removeVeiculo(int linha) {
         boolean result = this.listaDeVeiculos.remove(this.listaDeVeiculos.get(linha));
         this.fireTableRowsDeleted(linha, linha);
         return result;
     }
-    
-    public void refreshTabela(List<VeiculoAbstract> lista){
+
+    public void refreshTabela(List<VeiculoAbstract> lista) {
         this.listaDeVeiculos = new ArrayList();
         this.listaDeVeiculos.addAll(lista);
         this.fireTableDataChanged();
     }
-    
+
 }

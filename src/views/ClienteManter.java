@@ -1,9 +1,10 @@
 package views;
 
-import views.Error;
+import views.Dialog;
 import beans.cliente.ClientesTabela;
 import beans.cliente.Cliente;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class ClienteManter extends javax.swing.JInternalFrame {
 
@@ -113,6 +114,11 @@ public class ClienteManter extends javax.swing.JInternalFrame {
 
         botaoEditar.setText("Editar");
         botaoEditar.setActionCommand("");
+        botaoEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botaoEditarMousePressed(evt);
+            }
+        });
 
         botaoRemover.setText("Remover");
         botaoRemover.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -151,36 +157,34 @@ public class ClienteManter extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(endereco)
                                 .addComponent(sobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(rg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                                    .addComponent(cpf, javax.swing.GroupLayout.Alignment.LEADING))))
+                                    .addComponent(cpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                                    .addComponent(rg, javax.swing.GroupLayout.Alignment.LEADING))))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel6)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(idNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(33, 33, 33)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(66, 66, 66)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botaoListar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botaoAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(70, 70, 70)
-                            .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(55, 55, 55)
-                            .addComponent(botaoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botaoAdicionar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botaoRemover, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -247,19 +251,45 @@ public class ClienteManter extends javax.swing.JInternalFrame {
         String c_rg = this.rg.getText();
         String c_sobrenome = this.sobrenome.getText();
         if (c_nome.isEmpty() || c_endereco.isEmpty() || c_cpf.isEmpty() || c_rg.isEmpty() || c_sobrenome.isEmpty()) {
-            Error.main("Um ou mais campos enocontram-se vazios.");
+            Dialog.main("Um ou mais campos enocontram-se vazios.");
         } else {
             Cliente cliente = new Cliente(c_nome, c_sobrenome, c_rg, c_cpf, c_endereco);
             listaDeClientes.add(cliente);
             clientesTabela.addCliente(cliente);
+            this.nome.setText("");
+            this.endereco.setText("");
+            this.cpf.setText("");
+            this.rg.setText("");
+            this.sobrenome.setText("");
+            Dialog.main("O cliente foi cadastrado com sucesso!");
         }
     }//GEN-LAST:event_botaoAdicionarMouseReleased
 
     private void botaoRemoverMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverMouseReleased
         if (linhaAtual != -1) {
-            clientesTabela.removeCliente(linhaAtual);
+            Object[] opcoes = {"Sim", "Não"};
+            Object defaultChoice = opcoes[1];
+            int input = JOptionPane.showOptionDialog(null, 
+                    "Tem certeza que deseja remover o cliente selecionado?", 
+                    "Atenção!", 
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, 
+                    null, 
+                    opcoes, 
+                    defaultChoice);
+            if (input == 0) {
+                if (clientesTabela.removeCliente(linhaAtual)) {
+                    this.nome.setText("");
+                    this.endereco.setText("");
+                    this.cpf.setText("");
+                    this.rg.setText("");
+                    this.sobrenome.setText("");
+                } else {
+                    Dialog.main("Erro ao apagar! Verifique se a entrada é válida");
+                }
+            }
         } else {
-            Error.main("ixi");
+            Dialog.main("Nenhum objeto selecionado!");
         }
     }//GEN-LAST:event_botaoRemoverMouseReleased
 
@@ -288,6 +318,31 @@ public class ClienteManter extends javax.swing.JInternalFrame {
             rg.setText(rg.getText().substring(0, 13));
         }
     }//GEN-LAST:event_rgKeyPressed
+
+    private void botaoEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoEditarMousePressed
+        if (linhaAtual != -1) {
+            String c_nome = this.nome.getText();
+            String c_endereco = this.endereco.getText();
+            String c_cpf = this.cpf.getText();
+            String c_rg = this.rg.getText();
+            String c_sobrenome = this.sobrenome.getText();
+            Cliente cliente = clientesTabela.getCliente(linhaAtual);
+            if (c_nome.isEmpty() || c_endereco.isEmpty() || c_cpf.isEmpty() || c_rg.isEmpty() || c_sobrenome.isEmpty()) {
+                Dialog.main("Um ou mais campos enocontram-se inválidos.");
+            } else {
+                cliente.setCpf(c_cpf);
+                cliente.setRg(c_rg);
+                cliente.setNome(c_nome);
+                cliente.setSobrenome(c_sobrenome);
+                cliente.setEndereco(c_endereco);
+                clientesTabela.fireTableRowsUpdated(linhaAtual, linhaAtual);
+                Dialog.main("Cliente editado com sucesso!");
+            }
+        } else {
+            Dialog.main("A linha selecionada não é válida.");
+        }
+
+    }//GEN-LAST:event_botaoEditarMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
