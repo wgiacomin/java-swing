@@ -11,7 +11,7 @@ public class VeiculosTabela extends AbstractTableModel {
 
     private final String[] colunas = new String[]{"#", "Tipo", "Placa", "Marca", "Modelo", "Ano", "Preço da diária"};
     private List<VeiculoAbstract> listaDeVeiculos = new ArrayList();
-    NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+    private final NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
 
     @Override
     public int getRowCount() {
