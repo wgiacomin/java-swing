@@ -104,7 +104,7 @@ public class IncluirVeiculo extends javax.swing.JInternalFrame {
         jLabel5.setText("Modelo:");
 
         jLabel6.setLabelFor(boxValorDeCompra);
-        jLabel6.setText("Valor de Compra:");
+        jLabel6.setText("Valor de Compra (R$):");
 
         jLabel7.setLabelFor(boxPlaca);
         jLabel7.setText("Placa:");
@@ -163,7 +163,7 @@ public class IncluirVeiculo extends javax.swing.JInternalFrame {
                         .addComponent(boxPlaca)
                         .addComponent(boxValorDeCompra))
                     .addComponent(boxAno, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
