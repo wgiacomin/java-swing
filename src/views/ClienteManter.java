@@ -285,7 +285,7 @@ public class ClienteManter extends javax.swing.JInternalFrame {
                     this.rg.setText("");
                     this.sobrenome.setText("");
                 } else {
-                    Dialog.main("Erro ao apagar! Verifique se a entrada é válida");
+                    Dialog.main("Erro ao apagar! Verifique se o cliente não possui veículos locados.");
                 }
             }
         } else {
