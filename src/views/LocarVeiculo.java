@@ -10,12 +10,15 @@ import beans.veiculos.atributos.Categoria;
 import beans.veiculos.atributos.Estado;
 import beans.veiculos.atributos.Marca;
 import beans.veiculos.atributos.Tipo;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
 public class LocarVeiculo extends javax.swing.JInternalFrame {
@@ -268,7 +271,16 @@ public class LocarVeiculo extends javax.swing.JInternalFrame {
 
         jLabel8.setText("dias.");
 
-        boxData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        try {
+            boxData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("**********")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        boxData.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                boxDataFocusLost(evt);
+            }
+        });
 
         jLabel9.setLabelFor(boxData);
         jLabel9.setText("Data:");
@@ -391,25 +403,42 @@ public class LocarVeiculo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TabelaLocacaoMousePressed
 
     private void botaoLocarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoLocarMouseReleased
-        if(filtroCpf.getSelectedIndex() < 0 || filtroNome.getSelectedIndex() < 0 || filtroSobrenome.getSelectedIndex() < 0){
-            Dialog.main("O locatário não foi selecionado.");
-            return;
+        try {
+            if (filtroCpf.getSelectedIndex() < 0 || filtroNome.getSelectedIndex() < 0 || filtroSobrenome.getSelectedIndex() < 0) {
+                Dialog.main("O locatário não foi selecionado.");
+                return;
+            }
+
+            if (boxDias.getText().isEmpty() || boxData.getText().isEmpty()) {
+                Dialog.main("Verifique se todos os dados foram preenchidos.");
+                return;
+            }
+
+            if (linhaAtual < 0) {
+                Dialog.main("O veículo não foi selecionado");
+                return;
+            }
+
+            VeiculoAbstract veiculo = veiculosTabela.getVeiculo(linhaAtual);
+            int dias = Integer.parseInt(boxDias.getText());
+            Calendar data = Calendar.getInstance();
+            data.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(boxData.getText()));
+            Cliente cliente = listaDeClientes.get(filtroNome.getSelectedIndex());
+            veiculo.locar(dias, data, cliente);
+            this.gerarNovosResultados();
+            Dialog.main("O veículo de placa " + veiculo.getPlaca() + " foi reservado com sucesso para o cliente!");
+        } catch (ParseException ex) {
+            Dialog.main("Verifique se algum campo se encontra inválido.");
         }
-        
-        if (linhaAtual < 0){
-            Dialog.main("O veículo não foi selecionado");
-            return;
-        }
-        
-        VeiculoAbstract veiculo = veiculosTabela.getVeiculo(linhaAtual);
-        int dias = Integer.parseInt(boxDias.getText());
-        Calendar data = Calendar.getInstance();
-        data.setTime((Date) boxData.getValue());
-        Cliente cliente = listaDeClientes.get(filtroNome.getSelectedIndex());
-        veiculo.locar(dias, data, cliente);
-        this.gerarNovosResultados();
-        Dialog.main("O veículo de placa " + veiculo.getPlaca() + " foi reservado com sucesso para o cliente!");
     }//GEN-LAST:event_botaoLocarMouseReleased
+
+    private void boxDataFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_boxDataFocusLost
+        String pattern = "(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/([0-9]{4})";
+        if (boxData.getText().matches(pattern)) {
+            return;
+        }
+        boxData.setText("");
+    }//GEN-LAST:event_boxDataFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -447,11 +476,11 @@ public class LocarVeiculo extends javax.swing.JInternalFrame {
         List<VeiculoAbstract> veiculosFiltrados = new ArrayList<>();
 
         listaDeVeiculos.forEach(e -> {
-            if (e.getEstado() == (Estado) Estado.DISPONIVEL){
+            if (e.getEstado() == (Estado) Estado.DISPONIVEL) {
                 veiculosFiltrados.add(e);
             }
         });
-        
+
         if (filtroTipoIncluir.isSelected() && filtroTipo.getSelectedIndex() > -1) {
             i = veiculosFiltrados.iterator();
             while (i.hasNext()) {
