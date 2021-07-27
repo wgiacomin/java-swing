@@ -50,7 +50,6 @@ public class ClienteManter extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Consultar Clientes");
 
-        TabelaClientes.setAutoCreateRowSorter(true);
         TabelaClientes.setModel(clientesTabela);
         TabelaClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TabelaClientes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -168,9 +167,8 @@ public class ClienteManter extends javax.swing.JInternalFrame {
                                 .addComponent(endereco)
                                 .addComponent(sobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(rg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                    .addComponent(cpf, javax.swing.GroupLayout.Alignment.LEADING))))
+                                .addComponent(rg)
+                                .addComponent(cpf)))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel6)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
