@@ -11,6 +11,7 @@ import java.util.List;
 import beans.cliente.Cliente;
 import beans.veiculos.VeiculoAbstract;
 import views.ClienteManter;
+import views.DevolverVeiculo;
 import views.IncluirVeiculo;
 import views.LocarVeiculo;
 import views.VenderVeiculo;
@@ -109,6 +110,7 @@ public class DesktopArea extends javax.swing.JFrame {
         jMenu2.add(jMenuItem5);
 
         jMenuItem6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+<<<<<<< HEAD
         jMenuItem6.setText("Vender");
         jMenuItem6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -118,6 +120,12 @@ public class DesktopArea extends javax.swing.JFrame {
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
+=======
+        jMenuItem6.setText("Devolver");
+        jMenuItem6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botaoDevolver(evt);
+>>>>>>> e652be3c14f989ca0ed7585337e394b762b63142
             }
         });
         jMenu2.add(jMenuItem6);
@@ -159,6 +167,7 @@ public class DesktopArea extends javax.swing.JFrame {
         locarVeiculo.setVisible(true);
     }//GEN-LAST:event_botaoLocar
 
+
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -176,6 +185,17 @@ public class DesktopArea extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void botaoDevolver(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoDevolver
+        DevolverVeiculo devolverVeiculo = new DevolverVeiculo(listaDeVeiculos, listaDeClientes);
+        this.mainScreen.add(devolverVeiculo);
+        Dimension desktopSize = this.getSize();
+        Dimension jInternalFrameSize = devolverVeiculo.getSize();
+        devolverVeiculo.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
+                (desktopSize.height - jInternalFrameSize.height - 100) / 2);
+        devolverVeiculo.setVisible(true);
+    }//GEN-LAST:event_botaoDevolver
+
 
     /**
      * @param args the command line arguments

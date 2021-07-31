@@ -6,6 +6,7 @@ import beans.veiculos.Motocicleta;
 import beans.veiculos.Van;
 import beans.veiculos.VeiculoAbstract;
 import beans.veiculos.VeiculosTabela;
+import beans.veiculos.VeiculosLocados;
 import beans.veiculos.atributos.Categoria;
 import beans.veiculos.atributos.Estado;
 import beans.veiculos.atributos.Marca;
@@ -24,6 +25,7 @@ import javax.swing.DefaultComboBoxModel;
 public class LocarVeiculo extends javax.swing.JInternalFrame {
 
     private VeiculosTabela veiculosTabela = new VeiculosTabela();
+    private VeiculosLocados veiculosLocados = new VeiculosLocados();
     private final List<Cliente> listaDeClientes;
     private List<VeiculoAbstract> listaDeVeiculos;
     private DefaultComboBoxModel cpf = new DefaultComboBoxModel();
@@ -84,6 +86,7 @@ public class LocarVeiculo extends javax.swing.JInternalFrame {
         setTitle("Locar Veículo");
 
         TabelaLocacao.setModel(veiculosTabela);
+        TabelaLocacao.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         TabelaLocacao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 TabelaLocacaoMousePressed(evt);
@@ -425,6 +428,7 @@ public class LocarVeiculo extends javax.swing.JInternalFrame {
             data.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(boxData.getText()));
             Cliente cliente = listaDeClientes.get(filtroNome.getSelectedIndex());
             veiculo.locar(dias, data, cliente);
+            veiculosLocados.addVeiculo(veiculo);
             this.gerarNovosResultados();
             Dialog.main("O veículo de placa " + veiculo.getPlaca() + " foi reservado com sucesso para o cliente!");
         } catch (ParseException ex) {
