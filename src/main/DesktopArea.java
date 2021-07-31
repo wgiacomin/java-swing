@@ -13,6 +13,8 @@ import beans.veiculos.VeiculoAbstract;
 import views.ClienteManter;
 import views.IncluirVeiculo;
 import views.LocarVeiculo;
+import views.VenderVeiculo;
+
 
 public class DesktopArea extends javax.swing.JFrame {
 
@@ -41,6 +43,7 @@ public class DesktopArea extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -98,7 +101,26 @@ public class DesktopArea extends javax.swing.JFrame {
                 botaoLocar(evt);
             }
         });
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
+
+        jMenuItem6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItem6.setText("Vender");
+        jMenuItem6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuItem6botaoVender(evt);
+            }
+        });
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
 
@@ -136,6 +158,24 @@ public class DesktopArea extends javax.swing.JFrame {
                 (desktopSize.height - jInternalFrameSize.height - 100) / 2);
         locarVeiculo.setVisible(true);
     }//GEN-LAST:event_botaoLocar
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6botaoVender(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem6botaoVender
+        VenderVeiculo venderVeiculo = new VenderVeiculo(listaDeVeiculos);
+        this.mainScreen.add(venderVeiculo);
+        Dimension desktopSize = this.getSize();
+        Dimension jInternalFrameSize = venderVeiculo.getSize();
+        venderVeiculo.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
+                (desktopSize.height - jInternalFrameSize.height - 100) / 2);
+        venderVeiculo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6botaoVender
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,6 +222,7 @@ public class DesktopArea extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JDesktopPane mainScreen;
     // End of variables declaration//GEN-END:variables
 }
