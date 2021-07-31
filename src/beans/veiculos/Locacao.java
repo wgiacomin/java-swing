@@ -20,6 +20,10 @@ public class Locacao {
         return this.valor;
     }
     
+    public double getDias(){
+        return this.dias;
+    }
+    
     public Calendar getData(){
         return this.data;
     }
