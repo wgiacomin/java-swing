@@ -2,17 +2,23 @@ package beans.veiculos;
 
 import beans.veiculos.atributos.Tipo;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import javax.swing.table.AbstractTableModel;
 
 public class VeiculosTabela extends AbstractTableModel {
+    protected String[] colunas;
+    protected List<VeiculoAbstract> listaDeVeiculos = new ArrayList();
+    protected NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+    protected SimpleDateFormat formatterData = new SimpleDateFormat("dd/MM/yyyy");
 
-    private final String[] colunas = new String[]{"#", "Tipo", "Placa", "Marca", "Modelo", "Ano", "Preço da diária"};
-    List<VeiculoAbstract> listaDeVeiculos = new ArrayList();
-    private final NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
-
+       public VeiculosTabela(){
+           colunas = new String[]{"#", "Tipo", "Placa", "Marca", "Modelo", "Ano", "Preço da diária"};
+       }
+    
+    
     @Override
     public int getRowCount() {
         return listaDeVeiculos.size();

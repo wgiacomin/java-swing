@@ -6,7 +6,6 @@ import beans.veiculos.Motocicleta;
 import beans.veiculos.Van;
 import beans.veiculos.VeiculoAbstract;
 import beans.veiculos.VeiculosLocados;
-import beans.veiculos.VeiculosTabela;
 import views.LocarVeiculo;
 import beans.veiculos.atributos.Categoria;
 import beans.veiculos.atributos.Estado;

@@ -7,29 +7,9 @@ import java.util.Locale;
 
 
 public class TabelaVenda extends VeiculosTabela {
-
-    private final String[] colunas = new String[]{"#", "Placa", "Marca", "Modelo", "Ano", "Valor de venda"};
-    List<VeiculoAbstract> listaDeVeiculos = new ArrayList();
-    private final NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
-
-    @Override
-    public int getRowCount() {
-        return listaDeVeiculos.size();
-    }
-
-    @Override
-    public int getColumnCount() {
-        return this.colunas.length;
-    }
-
-    @Override
-    public String getColumnName(int index) {
-        return this.colunas[index];
-    }
-
-    @Override
-    public boolean isCellEditable(int row, int column) {
-        return false;
+    
+    public TabelaVenda(){
+       colunas = new String[]{"#", "Placa", "Marca", "Modelo", "Ano", "Valor de venda"};
     }
 
     @Override
@@ -60,27 +40,6 @@ public class TabelaVenda extends VeiculosTabela {
             default:
                 return null;
         }
-    }
-
-    public VeiculoAbstract getVeiculo(int linha) {
-        return listaDeVeiculos.get(linha);
-    }
-
-    public void addVeiculo(VeiculoAbstract veiculo) {
-        this.listaDeVeiculos.add(veiculo);
-        this.fireTableRowsInserted(listaDeVeiculos.size() - 1, listaDeVeiculos.size() - 1);
-    }
-
-    public boolean removeVeiculo(int linha) {
-        boolean result = this.listaDeVeiculos.remove(this.listaDeVeiculos.get(linha));
-        this.fireTableRowsDeleted(linha, linha);
-        return result;
-    }
-
-    public void refreshTabela(List<VeiculoAbstract> lista) {
-        this.listaDeVeiculos = new ArrayList();
-        this.listaDeVeiculos.addAll(lista);
-        this.fireTableDataChanged();
     }
 
 }
