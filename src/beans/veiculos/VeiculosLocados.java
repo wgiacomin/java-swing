@@ -1,14 +1,5 @@
 package beans.veiculos;
 
-import beans.cliente.Cliente;
-import beans.veiculos.Locacao;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Calendar;
-
 public class VeiculosLocados extends VeiculosTabela {
     
     public VeiculosLocados(){
