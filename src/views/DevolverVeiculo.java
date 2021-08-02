@@ -1,22 +1,8 @@
 package views;
 
 import beans.cliente.Cliente;
-import beans.veiculos.Automovel;
-import beans.veiculos.Motocicleta;
-import beans.veiculos.Van;
 import beans.veiculos.VeiculoAbstract;
 import beans.veiculos.VeiculosLocados;
-import views.LocarVeiculo;
-import beans.veiculos.atributos.Categoria;
-import beans.veiculos.atributos.Estado;
-import beans.veiculos.atributos.Marca;
-import beans.veiculos.atributos.Tipo;
-import beans.veiculos.VeiculosTabela;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -45,6 +31,7 @@ public class DevolverVeiculo extends javax.swing.JInternalFrame {
         botaoDevolver = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
 
         TabelaExibe.setModel(veiculosLocados);
         TabelaExibe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);

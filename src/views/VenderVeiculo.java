@@ -60,6 +60,7 @@ public class VenderVeiculo extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(1151, 645));
 
         TabelaVenda.setModel(tabelaVenda);
+        TabelaVenda.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         TabelaVenda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 TabelaVendaMousePressed(evt);
