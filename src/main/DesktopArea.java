@@ -44,7 +44,8 @@ public class DesktopArea extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -102,33 +103,25 @@ public class DesktopArea extends javax.swing.JFrame {
                 botaoLocar(evt);
             }
         });
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
         jMenu2.add(jMenuItem5);
 
-        jMenuItem6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-<<<<<<< HEAD
-        jMenuItem6.setText("Vender");
-        jMenuItem6.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMenuItem9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItem9.setText("Vender");
+        jMenuItem9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jMenuItem6botaoVender(evt);
+                botaoVender(evt);
             }
         });
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-=======
-        jMenuItem6.setText("Devolver");
-        jMenuItem6.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMenu2.add(jMenuItem9);
+
+        jMenuItem7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItem7.setText("Devolver");
+        jMenuItem7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 botaoDevolver(evt);
->>>>>>> e652be3c14f989ca0ed7585337e394b762b63142
             }
         });
-        jMenu2.add(jMenuItem6);
+        jMenu2.add(jMenuItem7);
 
         jMenuBar1.add(jMenu2);
 
@@ -167,12 +160,7 @@ public class DesktopArea extends javax.swing.JFrame {
         locarVeiculo.setVisible(true);
     }//GEN-LAST:event_botaoLocar
 
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenuItem6botaoVender(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem6botaoVender
+    private void botaoVender(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVender
         VenderVeiculo venderVeiculo = new VenderVeiculo(listaDeVeiculos);
         this.mainScreen.add(venderVeiculo);
         Dimension desktopSize = this.getSize();
@@ -180,11 +168,7 @@ public class DesktopArea extends javax.swing.JFrame {
         venderVeiculo.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
                 (desktopSize.height - jInternalFrameSize.height - 100) / 2);
         venderVeiculo.setVisible(true);
-    }//GEN-LAST:event_jMenuItem6botaoVender
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_botaoVender
 
     private void botaoDevolver(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoDevolver
         DevolverVeiculo devolverVeiculo = new DevolverVeiculo(listaDeVeiculos, listaDeClientes);
@@ -233,6 +217,7 @@ public class DesktopArea extends javax.swing.JFrame {
         });
     }
 
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -242,7 +227,8 @@ public class DesktopArea extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JDesktopPane mainScreen;
     // End of variables declaration//GEN-END:variables
 }

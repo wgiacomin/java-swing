@@ -1,21 +1,10 @@
- /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package views;
-
-/**
- *
- * @author julia
- */
 
 import beans.veiculos.Automovel;
 import beans.veiculos.Motocicleta;
 import beans.veiculos.Van;
 import beans.veiculos.VeiculoAbstract;
 import beans.veiculos.TabelaVenda;
-//import beans.veiculos.VeiculosTabela;
 import beans.veiculos.atributos.Categoria;
 import beans.veiculos.atributos.Estado;
 import beans.veiculos.atributos.Marca;
@@ -27,9 +16,8 @@ import javax.swing.DefaultComboBoxModel;
 
 public class VenderVeiculo extends javax.swing.JInternalFrame {
 
-    private TabelaVenda tabelaVenda = new TabelaVenda();
-    //private VeiculosTabela veiculosTabela = new VeiculosTabela();
-    private List<VeiculoAbstract> listaDeVeiculos;
+    private final TabelaVenda tabelaVenda = new TabelaVenda();
+    private final List<VeiculoAbstract> listaDeVeiculos;
     private int linhaAtual = -1;
     
     public VenderVeiculo(List<VeiculoAbstract> listaDeVeiculos) {
