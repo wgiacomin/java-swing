@@ -248,7 +248,7 @@ public class ClienteManter extends javax.swing.JInternalFrame {
         String c_cpf = this.cpf.getText();
         String c_rg = this.rg.getText();
         String c_sobrenome = this.sobrenome.getText();
-        if (c_nome.isEmpty() || c_endereco.isEmpty() || c_cpf.isEmpty() || c_rg.isEmpty() || c_sobrenome.isEmpty()) {
+        if (c_nome.isEmpty() || c_endereco.isEmpty() || c_cpf.replaceAll("\\D+", "").isEmpty() || c_rg.isEmpty() || c_sobrenome.isEmpty()) {
             Dialog.main("Um ou mais campos enocontram-se vazios.");
         } else {
             Cliente cliente = new Cliente(c_nome, c_sobrenome, c_rg, c_cpf, c_endereco);
