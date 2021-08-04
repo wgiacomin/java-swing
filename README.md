@@ -151,14 +151,4 @@ viii.  Cliente getCliente() – Retorna o cliente da locação
 
 - Utilizar herança para definir as classes Veiculo, Automovel, Motocicleta e Van. Utilize classes abstratas quando necessário. 
 - Utilizar polimorfismo para manipular os veiculos. 
-- Java Swing 
-
-1. Diagrama de classes 
-1. Projeto na IDE Eclipse ou Netbeans com código fonte 
-1. Arquivo .jar executável 
-
-**Avaliação:** 
-
-- Material entregue 
-- Qualidade do software (bugs encontrados na defesa) 
-- Defesa do código e a nota será individual, considerando a defesa 
+- Java Swing
