@@ -1,11 +1,3 @@
-**Trabalho prático Swing e JDBC.** 
-
-**Data da entrega: Ver moodle** 
-
-**Data das defesas: Ver moodle** 
-
-**Equipes: Máximo 4 pessoas.** 
-
 Uma empresa que loca veículos (automóveis, vans e motos) resolveu criar um sistema para gerenciar o ciclo de vida de seus veículos (da compra, passando pelas locações, até a venda do veículo). O novo sistema precisa ser em Java com interface SWING e seguindo o paradigma orientado a objetos.  
 
 O sistema terá os seguintes requisitos: 
@@ -160,8 +152,6 @@ viii.  Cliente getCliente() – Retorna o cliente da locação
 - Utilizar herança para definir as classes Veiculo, Automovel, Motocicleta e Van. Utilize classes abstratas quando necessário. 
 - Utilizar polimorfismo para manipular os veiculos. 
 - Java Swing 
-
-**Itens para serem entregues:** 
 
 1. Diagrama de classes 
 1. Projeto na IDE Eclipse ou Netbeans com código fonte 
